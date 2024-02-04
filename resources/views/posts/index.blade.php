@@ -94,18 +94,21 @@
                 </div>
                 <div class="divider"></div>
                 <div class="panel rounded shadow">
-                    <form action="...">
-                        <textarea class="form-control input-lg no-border" rows="2" placeholder="What are you doing?..."></textarea>
-                    </form>
-                    <div class="panel-footer">
-                        <button class="btn btn-success pull-right mt-5">POST</button>
+                    <form action="{{route('posts.store')}}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <textarea name="content" class="form-control input-lg no-border" rows="2" placeholder="What are you doing?..."></textarea>
+                        <div class="panel-footer">
                         <ul class="nav nav-pills">
                             <li>
                                 <a href="#"><i class="fa fa-camera"></i></a>
-                                <input type="file">
+                                <input name="image" type="file">
                             </li>
                         </ul>
                     </div>
+                    <button type="submit" class="btn btn-success pull-right mt-5">POST</button>
+
+                    </form>
+                   
                 </div>
              
             </div>
