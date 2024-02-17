@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-       $posts = Post::with('user')->get(); ///get post with user who is the owner of the post
+       $posts = Post::with(['user','comments'])->get(); ///get post with user who is the owner of the post
        $user = Auth::user();  /// get current user
         return view('posts.index', compact('posts','user'));
     }

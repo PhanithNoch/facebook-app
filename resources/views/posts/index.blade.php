@@ -9,8 +9,6 @@
 </head>
 
 <body>
-
-
     <div class="container bootstrap snippets bootdeys">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-4">
@@ -46,6 +44,7 @@
                 </div>
 
             </div>
+            <!-- post header -->
             <div class="col-lg-9 col-md-9 col-sm-8">
                 <div class="profile-cover">
                     <div class="cover rounded shadow no-overflow">
@@ -93,6 +92,7 @@
                 </div>
 
             </div>
+            <!-- end post header -->
         </div>
 
         <div class="row">
@@ -101,14 +101,27 @@
             <div class="col-md-9 " style="margin-bottom: 20px;">
                 <div class="card">
                     <div class="card-body">
+                        <div class="row">
                         <img style="border-radius: 50%;" width="100" src="{{ asset('storage/profiles/'.$post->user->profile_url) }}" alt="">
+                        <h5>{{$post->user->first_name}}</h5>
+                        </div>
                         <h5 class="card-title
                                     ">{{$post->title}}</h5>
                         <p class="card-text">{{$post->content}}</p>
                         <img width="100%" src="{{ asset('storage/posts/'.$post->image_url) }}" class="card-img-top" alt="...">
                         <!-- comment section -->
-                        <div class="row">
 
+                        <!-- start list comment -->
+                        @foreach ($post->comments as $comment)
+                        <p class="bg-primary ">{{$comment->text}}</p>    
+                        @endforeach
+                        <!-- end list comment -->
+                        <div class="row">
+                            <form action="{{route('comments.store',$post->id )}}" method="POST">
+                                @csrf
+                                <textarea name="text" class="form-control input-lg no-border" rows="2" placeholder="Comment"></textarea>
+                                <button type="submit" class="btn btn-success pull-right mt-5">Comment</button>
+                            </form>
                         </div>
 
                         <!-- end comment section -->
