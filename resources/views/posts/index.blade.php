@@ -25,7 +25,7 @@
                                     <h4 class="text-capitalize">{{$user->first_name}} {{$user->last_name}}</h4>
                                     <p class="text-muted text-capitalize">web designer</p>
                                 </li>
-                                
+
                                 <li><br></li>
                                 <li>
                                     <div class="btn-group-vertical btn-block">
@@ -33,9 +33,9 @@
                                         <!-- Authentication -->
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                        <button class="btn btn-default" type="submit">
-                                        <i class="fa fa-cog pull-right"></i>Logout
-                                        </button>
+                                            <button class="btn btn-default" type="submit">
+                                                <i class="fa fa-cog pull-right"></i>Logout
+                                            </button>
 
                                         </form>
                                     </div>
@@ -44,26 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-theme rounded shadow">
-                    <div class="panel-heading">
-                        <div class="pull-left">
-                            <h3 class="panel-title">Contact</h3>
-                        </div>
-                        <div class="pull-right">
-                            <a href="#" class="btn btn-sm btn-success"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="btn btn-sm btn-success"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn btn-sm btn-success"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="panel-body no-padding rounded">
-                        <ul class="list-group no-margin">
-                            <li class="list-group-item"><i class="fa fa-envelope mr-5"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0d3d5d0d0cfd2d4e0c2cfcfd4c4c5d98ec3cfcd">[email&#160;protected]</a></li>
-                            <li class="list-group-item"><i class="fa fa-globe mr-5"></i> www.bootdey.com</li>
-                            <li class="list-group-item"><i class="fa fa-phone mr-5"></i> +6281 903 xxx xxx</li>
-                        </ul>
-                    </div>
-                </div>
+
             </div>
             <div class="col-lg-9 col-md-9 col-sm-8">
                 <div class="profile-cover">
@@ -98,20 +79,44 @@
                         @csrf
                         <textarea name="content" class="form-control input-lg no-border" rows="2" placeholder="What are you doing?..."></textarea>
                         <div class="panel-footer">
-                        <ul class="nav nav-pills">
-                            <li>
-                                <a href="#"><i class="fa fa-camera"></i></a>
-                                <input name="image" type="file">
-                            </li>
-                        </ul>
-                    </div>
-                    <button type="submit" class="btn btn-success pull-right mt-5">POST</button>
+                            <ul class="nav nav-pills">
+                                <li>
+                                    <a href="#"><i class="fa fa-camera"></i></a>
+                                    <input name="image" type="file">
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="submit" class="btn btn-success pull-right mt-5">POST</button>
 
                     </form>
-                   
+
                 </div>
-             
+
             </div>
+        </div>
+
+        <div class="row">
+            @foreach($posts as $post)
+            <div class="col-md-3"></div>
+            <div class="col-md-9 " style="margin-bottom: 20px;">
+                <div class="card">
+                    <div class="card-body">
+                        <img style="border-radius: 50%;" width="100" src="{{ asset('storage/profiles/'.$post->user->profile_url) }}" alt="">
+                        <h5 class="card-title
+                                    ">{{$post->title}}</h5>
+                        <p class="card-text">{{$post->content}}</p>
+                        <img width="100%" src="{{ asset('storage/posts/'.$post->image_url) }}" class="card-img-top" alt="...">
+                        <!-- comment section -->
+                        <div class="row">
+
+                        </div>
+
+                        <!-- end comment section -->
+                    </div>
+
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
