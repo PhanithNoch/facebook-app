@@ -15,6 +15,8 @@ class Comment extends Model
         'text'
     ];
 
+    protected $with = ['user'];
+
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);

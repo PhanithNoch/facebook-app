@@ -107,16 +107,10 @@
                         </div>
                         <h5 class="card-title
                                     ">{{$post->title}}</h5>
-                        <p class="card-text">{{$post->content}}</p>
                         <img width="100%" src="{{ asset('storage/posts/'.$post->image_url) }}" class="card-img-top" alt="...">
                         <!-- comment section -->
-
-                        <!-- start list comment -->
-                        @foreach ($post->comments as $comment)
-                        <p class="bg-primary ">{{$comment->text}}</p>    
-                        @endforeach
-                        <!-- end list comment -->
-                        <div class="row">
+  <!-- end list comment -->
+  <div class="row">
                             <form action="{{route('comments.store',$post->id )}}" method="POST">
                                 @csrf
                                 <textarea name="text" class="form-control input-lg no-border" rows="2" placeholder="Comment"></textarea>
@@ -125,6 +119,18 @@
                         </div>
 
                         <!-- end comment section -->
+                        <!-- start list comment -->
+                        @foreach ($post->comments as $comment)
+                       <div class="row  " style="margin-bottom: 30px;">
+                        <div class="col-md-3">
+                            <img style="border-radius: 50%;" width="100" src="{{ asset('storage/profiles/'.$comment->user->profile_url) }}" alt="">
+                        </div>
+                        <div class="col-md-9">
+                            <p>{{$comment->text}}</p>
+                       </div>
+                       </div>   
+                        @endforeach
+                      
                     </div>
 
                 </div>
